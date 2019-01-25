@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion Integer.parseInt(pro_compileSdkVersion)
+    defaultConfig {
+        applicationId "lsh.com.codearchitect"
+        minSdkVersion Integer.parseInt(pro_minSdkVersion)
+        targetSdkVersion Integer.parseInt(pro_compileSdkVersion)
+        versionCode Integer.parseInt(pro_versionCode)
+        versionName pro_versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:${pro_appcompatVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${pro_constraint}"
+    testImplementation "junit:junit:${pro_junit}"
+    androidTestImplementation "com.android.support.test:runner:${pro_runner}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${pro_espresso}"
+    if ("true".equals(pro_isPlugn)) {   //组件化步骤
+        //如果有什么要单独在没有子模块的情况下依赖的
+
+    } else {
+        //组件化子模块
+        implementation project(':module_cotlin')
+        implementation project(':module_mvp')
+        implementation project(':module_hook')
+
+    }
+    implementation project(':libcommon')
+
+
+
+
+
+}

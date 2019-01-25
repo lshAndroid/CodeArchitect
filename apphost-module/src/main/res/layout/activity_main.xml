@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/module_cotlin_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="用kotlin开发的模块"
+
+     />
+    <Button
+        android:id="@+id/module_hook_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hook功能简单点击模块"
+        />
+    <Button
+        android:id="@+id/module_mvp_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="一个简单的mvp结构"
+        />
+</LinearLayout>

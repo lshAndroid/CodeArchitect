@@ -1,0 +1,1 @@
+include ':apphost-module', ':module_cotlin', ':module_mvp', ':libcommon', ':module_hook'

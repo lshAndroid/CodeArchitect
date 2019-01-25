@@ -1,0 +1,52 @@
+if ("true".equals(pro_isPlugn)) {   //组件化步骤1
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+android {
+    compileSdkVersion Integer.parseInt(pro_compileSdkVersion)
+
+    defaultConfig {
+        if ("true".equals(pro_isPlugn)) {  //组件化步骤2
+            applicationId "lsh.com.module_hook"
+        }
+
+        minSdkVersion Integer.parseInt(pro_minSdkVersion)
+        targetSdkVersion Integer.parseInt(pro_compileSdkVersion)
+        versionCode Integer.parseInt(pro_versionCode)
+        versionName pro_versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main { //组件化步骤3
+            if ("true".equals(pro_isPlugn)){
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }else {
+                manifest.srcFile 'src/main/plugmodule/AndroidManifest.xml'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:appcompat-v7:${pro_appcompatVersion}"
+    implementation "com.android.support.constraint:constraint-layout:${pro_constraint}"
+    testImplementation "junit:junit:${pro_junit}"
+    androidTestImplementation "com.android.support.test:runner:${pro_runner}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${pro_espresso}"
+
+    implementation project(':libcommon')
+}
