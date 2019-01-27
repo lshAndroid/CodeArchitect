@@ -1,6 +1,5 @@
 ## Android架构搭建--项目代码架构
-子模块都可以使用不同的结构
-cotlin的子模块，mvp(mvvm)的子模块，hook功能的模块，不会让一个module显得很冗杂，而且可以多人使用自己独特的方案。
+......
 ## 一、组件化开发的优点：
 1.整项目编译时间冗长，一小子模块的编译快速，减少等待build时间，优化开发效率。
 
@@ -37,6 +36,7 @@ if ("true".equals(pro_isPlugn)) {
 
 （3）解决各个模块之间的相互通信，主要采取阿里的开源框架ARouter
 
+额外：如果想将资源文件放到独立的lib也是同样的原理，这里并懒得介绍了
 #### 2.解决模块独立运行还是作为Library运行问题
 
 （1）各个模块的第三方引用库版本号统一放置project根目录gradle.properties，方便各个模块引用相同的参数
@@ -72,4 +72,62 @@ dependencies {
     } else {
         //组件化子模块
         implementation project(':module_cotlin')
-        implementation project(':module_mvp
+        implementation project(':module_mvp')
+        implementation project(':module_hook')
+
+    }
+    implementation project(':libcommon')
+}
+```
+
+各个子模块的gradle配置：
+
+主要是为了确定是模块独立运行，还是作为Library运行
+```
+if ("true".equals(pro_isPlugn)) {   //组件化步骤1
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+```
+主要是确定如果是独立模块，确定当前独立模块的包名
+```
+defaultConfig {
+ if ("true".equals(pro_isPlugn)) {  //组件化步骤2
+            applicationId "lsh.com.module_hook"
+        }
+}
+```
+分别确定模块独立运行的Manifest和作为库运行的Manifest，需要在模块对应路径下新建作为Library运行的Manifest
+```
+    sourceSets {
+        main { //组件化步骤3
+            if ("true".equals(pro_isPlugn)){
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }else {
+                manifest.srcFile 'src/main/plugmodule/AndroidManifest.xml'
+            }
+        }
+    }
+```
+# 如果想了解实现思路, 这里有详细源码分析讲解
+<a href="https://blog.csdn.net/insist_hui/article/details/86478569" target="_blank">Android架构之组件化项目代码架构</a>
+
+<img src="https://github.com/lshAndroid/CodeArchitect/blob/master/gif/pic2.gif" raw=true/>
+## 图片
+
+<img src="https://github.com/lshAndroid/CodeArchitect/blob/master/gif/pic1.jpg" raw=true/>
+
+
+谢谢观看，有用请点star，谢谢。
+
+
+
+
+
+
+
+
+
+
+
