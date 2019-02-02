@@ -1,1 +1,1 @@
-include ':apphost-module', ':module_cotlin', ':module_mvp', ':libcommon', ':module_hook'
+include ':apphost-module', ':module_cotlin', ':module_mvp', ':libcommon', ':module_hook', ':module_ndk'

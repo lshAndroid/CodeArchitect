@@ -9,7 +9,7 @@ import android.widget.Button;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnCotlin,btnMvp,btnHook;
+    Button btnCotlin,btnMvp,btnHook,btnNdk;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         btnCotlin=findViewById(R.id.module_cotlin_bt);
         btnMvp=findViewById(R.id.module_mvp_bt);
         btnHook=findViewById(R.id.module_hook_bt);
+        btnNdk=findViewById(R.id.module_ndk_bt);
         btnCotlin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
                 reflectIntent(activityName);
             }
         });
+        btnNdk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Timber.i("打印日志：Activity NdkActivity");
+//                startActivity(new Intent(MainActivity.this,NdkActivity.class));  //普通跳转activity，组件化代码切换模式报错，强迫症患者可以选择下面方式
+                String activityName="lsh.com.ailinapp.NdkActivity";
+                reflectIntent(activityName);
+            }
+        });
         btnHook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 String activityName="lsh.com.module_hook.HookActivity";  //方案二
                 reflectIntent(activityName);
                 //方案三：通过阿里巴巴开源的库ARouter实现跳转，为什么没放进来，复杂化代码，并且个人观点其规格要求多升级改动成本大
-
             }
         });
 

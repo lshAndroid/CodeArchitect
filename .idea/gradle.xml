@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/module_cotlin" />
             <option value="$PROJECT_DIR$/module_hook" />
             <option value="$PROJECT_DIR$/module_mvp" />
+            <option value="$PROJECT_DIR$/module_ndk" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

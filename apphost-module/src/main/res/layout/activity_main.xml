@@ -25,6 +25,12 @@
         android:id="@+id/module_mvp_bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="一个简单的mvp结构"
+        android:text="简单mvp模式子模块"
+        />
+    <Button
+        android:id="@+id/module_ndk_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ndk结构子模块"
         />
 </LinearLayout>
